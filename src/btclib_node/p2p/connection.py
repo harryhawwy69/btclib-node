@@ -711,8 +711,7 @@ class Connection:
         # `m_next_inv_send_time`) rather than announcing a transaction the
         # instant it is accepted. 0 is "never scheduled", which the first
         # check always treats as due. The queue is an insertion-ordered set
-        # (keys only), as Core's is a `std::set`: a trickle erases what it
-        # pops and touches nothing else. btclib-org/btclib-node#141
+        # (keys only), which a trickle empties. btclib-org/btclib-node#141
         self.tx_announce_queue: dict[bytes, None] = {}
         self.next_inv_send_time: float = 0.0
         # Core's `TxRelay::m_last_inv_sequence`: `Mempool.sequence` as of
